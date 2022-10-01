@@ -5,6 +5,7 @@ LABEL maintainer="Matt Dickinson <matt@sanbridge.org>"
 #Installation of all of the dependencies needed to build Music Player Daemon from source. 
 
 RUN apt-get update && apt-get install -y \
+	avahi-daemon \
 	build-essential \
 	git \
 	autotools-dev \
@@ -50,7 +51,7 @@ RUN git clone https://github.com/owntone/owntone-server.git
 WORKDIR owntone-server
 
 RUN autoreconf -i 
-RUN ./configure
+RUN ./configure --disable-install-systemd
 RUN make
 RUN make install
 
@@ -58,3 +59,4 @@ RUN mkdir -p /usr/local/var/run
 RUN mkdir -p /usr/local/var/log # or change logfile in conf
 #RUN chown unknown /usr/local/var/cache/owntone # or change conf
 
+CMD owntone
