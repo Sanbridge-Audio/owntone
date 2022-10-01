@@ -51,7 +51,7 @@ RUN git clone https://github.com/owntone/owntone-server.git
 WORKDIR owntone-server
 
 RUN autoreconf -i 
-RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-install-user
+RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-install-user --disable-install-systemd
 
 #RUN ./configure --disable-install-systemd
 RUN make
@@ -62,5 +62,6 @@ RUN mkdir -p /usr/local/var/log # or change logfile in conf
 #USER unkown
 #RUN chown unknown /usr/local/var/cache/owntone # or change conf
 COPY owntone.conf /etc
-CMD owntone
+CMD /usr/local/sbin/owntone
+#CMD owntone
 EXPOSE 6600 3688 3689
