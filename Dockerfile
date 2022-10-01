@@ -51,7 +51,9 @@ RUN git clone https://github.com/owntone/owntone-server.git
 WORKDIR owntone-server
 
 RUN autoreconf -i 
-RUN ./configure --disable-install-systemd
+RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-install-user
+
+#RUN ./configure --disable-install-systemd
 RUN make
 RUN make install
 
