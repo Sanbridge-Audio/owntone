@@ -6,7 +6,31 @@ LABEL maintainer="Matt Dickinson <matt@sanbridge.org>"
 RUN apt-get update && apt-get install -y \
 #RUN apt-get update && apt-get -y install --no-install-recommends \
 	curl \
-	git 
+	git \
+	autoconf \
+	automake \
+	libtool \ 
+	gettext \ 
+	gperf \ 
+	bison \
+	flex \ 
+	avahi-daemon \ 
+	sqlite3 \
+	ffmpeg \ 
+	libconfuse \ 
+	libevent \
+	MiniXML \ 
+	gcrypt \
+	zlib \ 
+	libunistring \
+	libjson-c \
+	libcurl \ 
+	libplist \ 
+	libsodium \ 
+	libprotobuf-c \ 
+	libasound \ 
+	libgnutls \ 
+	libwebsockets
 
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
 FROM depend AS mpdbuild
