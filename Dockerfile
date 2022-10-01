@@ -3,35 +3,40 @@ FROM debian:stable AS depend
 LABEL maintainer="Matt Dickinson <matt@sanbridge.org>" 
  
 #Installation of all of the dependencies needed to build Music Player Daemon from source. 
+
 RUN apt-get update && apt-get install -y \
-#RUN apt-get update && apt-get -y install --no-install-recommends \
-	curl \
+	build-essential \
 	git \
+	autotools-dev \
 	autoconf \
 	automake \
-	libtool \ 
-	gettext \ 
-	gperf \ 
+	libtool \
+	gettext \
+	gawk \
+	gperf \
 	bison \
-	flex \ 
-	avahi-daemon \ 
-	sqlite3 \
-	ffmpeg \ 
-	libconfuse-dev \ 
-	libevent-dev \
-#	MiniXML-dev \ 
-	libmxml-dev \
-	libgcrypt-dev \
-	zlib1g \ 
+	flex \
+	libconfuse-dev \
 	libunistring-dev \
+	libsqlite3-dev \
+	libavcodec-dev \
+	libavformat-dev \
+	libavfilter-dev \
+	libswscale-dev \
+	libavutil-dev \
+	libasound2-dev \
+	libmxml-dev \
+	libgcrypt20-dev \
+	libavahi-client-dev \
+	zlib1g-dev \
+	libevent-dev \
+	libplist-dev \
+	libsodium-dev \
 	libjson-c-dev \
-#	libcurl-dev \ 
-	libplist-dev \ 
-	libsodium-dev \ 
-	libprotobuf-c-dev \ 
-	libasound-dev \ 
-	libgnutls28-dev \ 
-	libwebsockets-dev
+	libwebsockets-dev \
+	libcurl4-openssl-dev \
+	libprotobuf-c-dev
+
 
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
 FROM depend AS mpdbuild
