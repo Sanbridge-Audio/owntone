@@ -60,3 +60,4 @@ RUN mkdir -p /usr/local/var/log # or change logfile in conf
 #RUN chown unknown /usr/local/var/cache/owntone # or change conf
 
 CMD owntone
+EXPOSE 6600 3688 3689
