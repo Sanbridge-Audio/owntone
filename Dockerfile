@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 	avahi-daemon \ 
 	sqlite3 \
 	ffmpeg \ 
-	libconfuse \ 
+	libconfuse-dev \ 
 	libevent \
 	MiniXML \ 
 	gcrypt \
