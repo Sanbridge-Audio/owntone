@@ -19,7 +19,8 @@ RUN apt-get update && apt-get install -y \
 	ffmpeg \ 
 	libconfuse-dev \ 
 	libevent-dev \
-	MiniXML-dev \ 
+#	MiniXML-dev \ 
+	libmxml-dev \
 	libgcrypt-dev \
 	zlib1g \ 
 	libunistring-dev \
