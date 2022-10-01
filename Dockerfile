@@ -18,18 +18,18 @@ RUN apt-get update && apt-get install -y \
 	sqlite3 \
 	ffmpeg \ 
 	libconfuse-dev \ 
-	libevent-2.1.8-stable-4 \
+	libevent-dev \
 	MiniXML-dev \ 
 	libgcrypt-dev \
 	zlib1g \ 
 	libunistring-dev \
 	libjson-c-dev \
-	libcurl-dev \ 
+#	libcurl-dev \ 
 	libplist-dev \ 
 	libsodium-dev \ 
 	libprotobuf-c-dev \ 
 	libasound-dev \ 
-	libgnutls-dev \ 
+	libgnutls28-dev \ 
 	libwebsockets-dev
 
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
