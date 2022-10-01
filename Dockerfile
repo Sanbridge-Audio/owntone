@@ -57,7 +57,7 @@ RUN make install
 
 RUN mkdir -p /usr/local/var/run
 RUN mkdir -p /usr/local/var/log # or change logfile in conf
-USER unkown
+#USER unkown
 #RUN chown unknown /usr/local/var/cache/owntone # or change conf
 
 CMD owntone
