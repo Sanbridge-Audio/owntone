@@ -60,7 +60,7 @@ RUN make install
 
 FROM node as webui 
 
-COPY --from=owntonebuild /owntone-server/web-src
+COPY --from=owntonebuild /owntone-server/web-src ./
 #WORKDIR /usr/src/app
 WORKDIR web-src
 
