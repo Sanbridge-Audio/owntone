@@ -61,6 +61,28 @@ WORKDIR web-src
 
 RUN npm install
 
+# install dependencies
+#npm install
+
+# Serve with hot reload at localhost:3000
+# (assumes that OwnTone server is running on localhost:3689)
+RUN npm run serve
+
+# Serve with hot reload at localhost:3000
+# (with remote OwnTone server reachable under owntone.local:3689)
+RUN VITE_OWNTONE_URL=http://owntone.local:3689 npm run serve
+
+# Build for production with minification (will update web interface
+# in "../htdocs")
+RUN npm run build
+
+# Format code
+RUN npm run format
+
+# Lint code (and fix errors that can be automatically fixed)
+RUN npm run lint
+
+WORKDIR /
 
 RUN mkdir -p /usr/local/var/run
 RUN mkdir -p /usr/local/var/log # or change logfile in conf
