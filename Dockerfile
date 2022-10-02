@@ -39,7 +39,9 @@ RUN apt-get update && apt-get install -y \
 	libprotobuf-c-dev \
 	npm
 
-
+WORKDIR /tmp
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install nodejs -y
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
 FROM owntonedepend AS owntonebuild
 
