@@ -57,6 +57,11 @@ RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-in
 RUN make
 RUN make install
 
+WORKDIR web-src
+
+RUN npm install
+
+
 RUN mkdir -p /usr/local/var/run
 RUN mkdir -p /usr/local/var/log # or change logfile in conf
 #USER unkown
