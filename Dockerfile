@@ -39,8 +39,29 @@ RUN apt-get update && apt-get install -y \
 	libprotobuf-c-dev \
 	npm
 
+
+FROM owntonedepend AS owntonebuild
+
+#Set the working directory of the dockerfile at this stage.
+ENV HOME /root
+
+RUN git clone https://github.com/owntone/owntone-server.git
+
+#Change the working directory to MPD for installation.
+WORKDIR owntone-server
+
+RUN autoreconf -i 
+RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-install-user --disable-install-systemd
+
+#RUN ./configure --disable-install-systemd
+RUN make
+RUN make install
+
+
 FROM node as webui 
-WORKDIR /usr/src/app
+
+COPY --from=owntonebuild /owntone-server/web-src
+#WORKDIR /usr/src/app
 WORKDIR web-src
 
 RUN npm install
@@ -67,25 +88,6 @@ RUN npm run format
 RUN npm run lint
 
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
-FROM owntonedepend AS owntonebuild
-
-#Set the working directory of the dockerfile at this stage.
-ENV HOME /root
-
-RUN git clone https://github.com/owntone/owntone-server.git
-
-#Change the working directory to MPD for installation.
-WORKDIR owntone-server
-
-RUN autoreconf -i 
-RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-install-user --disable-install-systemd
-
-#RUN ./configure --disable-install-systemd
-RUN make
-RUN make install
-
-
-
 WORKDIR /
 
 RUN mkdir -p /usr/local/var/run
