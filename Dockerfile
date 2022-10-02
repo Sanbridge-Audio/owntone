@@ -58,34 +58,7 @@ RUN make
 RUN make install
 
 
-FROM node as webui 
 
-COPY --from=owntonebuild /owntone-server/web-src ./
-#WORKDIR /usr/src/app
-WORKDIR web-src
-
-RUN npm install
-
-# install dependencies
-#npm install
-
-# Serve with hot reload at localhost:3000
-# (assumes that OwnTone server is running on localhost:3689)
-RUN npm run serve
-
-# Serve with hot reload at localhost:3000
-# (with remote OwnTone server reachable under owntone.local:3689)
-RUN VITE_OWNTONE_URL=http://owntone.local:3689 npm run serve
-
-# Build for production with minification (will update web interface
-# in "../htdocs")
-RUN npm run build
-
-# Format code
-RUN npm run format
-
-# Lint code (and fix errors that can be automatically fixed)
-RUN npm run lint
 
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
 WORKDIR /
