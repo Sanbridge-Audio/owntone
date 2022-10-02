@@ -36,7 +36,8 @@ RUN apt-get update && apt-get install -y \
 	libjson-c-dev \
 	libwebsockets-dev \
 	libcurl4-openssl-dev \
-	libprotobuf-c-dev
+	libprotobuf-c-dev \
+	npm
 
 
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
