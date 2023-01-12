@@ -57,7 +57,7 @@ RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-in
 RUN make
 RUN make install
 
-RUN --disable-install-systemd
+#RUN --disable-install-systemd
 
 
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
