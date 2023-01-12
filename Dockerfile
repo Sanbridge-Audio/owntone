@@ -48,7 +48,7 @@ ENV HOME /root
 RUN git clone https://github.com/owntone/owntone-server.git
 
 #Change the working directory to MPD for installation.
-WORKDIR owntone-server
+WORKDIR /owntone-server
 
 RUN autoreconf -i 
 RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-install-user --disable-install-systemd
@@ -57,7 +57,7 @@ RUN ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-in
 RUN make
 RUN make install
 
-
+RUN --disable-install-systemd
 
 
 #Setting a new stage for the dockerfile so that the cache can be utilized and the build can be sped up.
