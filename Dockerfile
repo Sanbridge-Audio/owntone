@@ -1,17 +1,16 @@
-# Use the official Debian image as the base image
-FROM debian:10
+# Use the official Python image as the base image
+FROM python:3.9-alpine
 
 # Set environment variables
-ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=C.UTF-8
 
-# Install required packages and add the Mopidy APT repository
-RUN apt-get update && \
-    apt-get install -y curl gnupg2 apt-transport-https && \
-    curl https://apt.mopidy.com/mopidy.gpg | apt-key add - && \
-    echo "deb https://apt.mopidy.com/buster.list" | tee /etc/apt/sources.list.d/mopidy.list
+# Install required packages and upgrade pip
+RUN apk add --no-cache --update alsa-lib-dev && \
+    apk add --no-cache --virtual .build-deps build-base && \
+    pip install --no-cache-dir --upgrade pip
 
 # Install Mopidy and its dependencies
-RUN apt-get update && apt-get install -y mopidy
+RUN pip install --no-cache-dir mopidy
 
 # Set the default command to start Mopidy
 CMD ["mopidy"]
