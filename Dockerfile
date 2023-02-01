@@ -1,17 +1,18 @@
-# Use the official Alpine Linux image as the base image
-FROM alpine:3.12
+# Use the official Debian image as the base image
+FROM debian:10
 
 # Set environment variables
-ENV LANG=C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install required packages and add the Mopidy APT repository
-RUN apk add --no-cache curl gnupg && \
-    curl -L https://apt.mopidy.com/mopidy.gpg | apk add --no-cache --key-flags=nosignature - && \
-    echo "https://apt.mopidy.com/alpine/v3.12/main" > /etc/apk/repositories/mopidy.repo
+RUN apt-get update && \
+    apt-get install -y curl gnupg2 apt-transport-https && \
+    curl https://apt.mopidy.com/mopidy.gpg | apt-key add - && \
+    echo "deb https://apt.mopidy.com/buster stable main" | tee /etc/apt/sources.list.d/mopidy.list
 
 # Install Mopidy and its dependencies
-RUN apk update && \
-    apk add mopidy
+RUN apt-get update && \
+    apt-get install -y mopidy
 
 # Set the default command to start Mopidy
 CMD ["mopidy"]
