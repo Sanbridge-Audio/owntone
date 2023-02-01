@@ -1,5 +1,5 @@
 # Use the official Debian image as the base image
-FROM debian:10
+FROM debian:stable
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
