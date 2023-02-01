@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install required packages and add the Mopidy APT repository
 RUN apt-get update && \
     apt-get install -y curl gnupg2 apt-transport-https && \
-    curl -L https://apt.mopidy.com/mopidy.gpg | apt-key add - && \
-    echo "deb [arch=amd64] https://apt.mopidy.com/buster main" > /etc/apt/sources.list.d/mopidy.list
+    curl https://apt.mopidy.com/mopidy.gpg | apt-key add - && \
+    echo "deb https://apt.mopidy.com/buster stable main" | tee /etc/apt/sources.list.d/mopidy.list
 
 # Install Mopidy and its dependencies
 RUN apt-get update && \
