@@ -1,5 +1,5 @@
 # Use the official Debian image as the base image
-FROM debian:10
+FROM debian
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -11,8 +11,7 @@ RUN apt-get update && \
     echo "deb https://apt.mopidy.com/buster stable main contrib non-free" > /etc/apt/sources.list.d/mopidy.list
 
 # Install Mopidy and its dependencies
-RUN apt-get update && \
-    apt-get install -y mopidy
+RUN apt update && apt install -y mopidy
 
 # Set the default command to start Mopidy
 CMD ["mopidy"]
