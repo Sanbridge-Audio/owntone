@@ -11,7 +11,7 @@ RUN apt-get update && \
     echo "deb https://apt.mopidy.com/buster stable main contrib non-free" > /etc/apt/sources.list.d/mopidy.list
 
 # Install Mopidy and its dependencies
-RUN apt update && apt install -y mopidy
+RUN apt update && apt install mopidy
 
 # Set the default command to start Mopidy
 CMD ["mopidy"]
